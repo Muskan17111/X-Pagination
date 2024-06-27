@@ -30,18 +30,15 @@ const EmployeeTable = () => {
 
   const handleNext = () => {
     if (currentPage < Math.ceil(employees.length / rowsPerPage)) {
-    //   console.log(`Navigating to next page: ${currentPage + 1}`);
       setCurrentPage(currentPage + 1);
     }
   };
-  
+
   const handlePrevious = () => {
     if (currentPage > 1) {
-    //   console.log(`Navigating to previous page: ${currentPage - 1}`);
       setCurrentPage(currentPage - 1);
     }
   };
-  
 
   return (
     <div className="employee-table-container">
@@ -76,5 +73,5 @@ const EmployeeTable = () => {
   );
 };
 
-export default EmployeeTable;
+export default EmployeeTable;  
 
