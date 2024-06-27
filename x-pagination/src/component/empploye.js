@@ -66,9 +66,9 @@ const EmployeeTable = () => {
         </tbody>
       </table>
       <div className='footer'>
-        <button onClick={handlePrevious} disabled={currentPage === 1}>Previous</button>
+        <button onClick={handlePrevious}>Previous</button>
         <button className="page-number" disabled>{currentPage}</button>
-        <button onClick={handleNext} disabled={currentPage === Math.ceil(employees.length / rowsPerPage)}>Next</button>
+        <button onClick={handleNext} >Next</button>
       </div>
     </div>
   );
