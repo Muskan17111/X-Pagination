@@ -22,19 +22,22 @@
   }
   
   button {
-    margin: 10px;
-    padding: 5px,10px;
+   margin: 20px;
+    padding: 10px,10px;
     background-color: #3e9465;
     color: white;
     border-radius: 5px;
     border-color: #3d9464;
+    border:none;
+    width: 100px;
+    height: 30px;
   }
   
   button:disabled {
     border-color: #3d9464;
   }
   .page-number{
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
   }
  
