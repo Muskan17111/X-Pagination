@@ -64,7 +64,7 @@ const EmployeeTable = () => {
           ))}
         </tbody>
       </table>
-      <div className="footer">
+      <div className='footer'>
         <button onClick={handlePrevious} disabled={currentPage === 1}>Previous</button>
         <button className="page-number" disabled>{currentPage}</button>
         <button onClick={handleNext} disabled={currentPage === Math.ceil(employees.length / rowsPerPage)}>Next</button>
@@ -73,5 +73,5 @@ const EmployeeTable = () => {
   );
 };
 
-export default EmployeeTable;  
+export default EmployeeTable;
 
