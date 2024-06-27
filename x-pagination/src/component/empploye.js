@@ -4,27 +4,24 @@ import './employe.css';
 const EmployeeTable = () => {
   const [employees, setEmployees] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [error, setError] = useState(null);
   const rowsPerPage = 10;
 
- const fetchEmployeeData = async () => {
-    try {
-      const response = await fetch('https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json');
-      if (!response.ok) {
-        throw new Error('failed to fetch data');
-      }
-      return await response.json();
-    } catch (error) {
-      alert(error.message);
-      return [];
-    }
-  };
-
   useEffect(() => {
-    const getData = async () => {
-      const data = await fetchEmployeeData();
-      setEmployees(data);
+    const fetchEmployeeData = async () => {
+      try {
+        const response = await fetch('https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        setEmployees(data);
+      } catch (error) {
+        setError(error.message);
+      }
     };
-    getData();
+
+    fetchEmployeeData();
   }, []);
 
   const indexOfLastRow = currentPage * rowsPerPage;
@@ -33,19 +30,23 @@ const EmployeeTable = () => {
 
   const handleNext = () => {
     if (currentPage < Math.ceil(employees.length / rowsPerPage)) {
+    //   console.log(`Navigating to next page: ${currentPage + 1}`);
       setCurrentPage(currentPage + 1);
     }
   };
-
+  
   const handlePrevious = () => {
     if (currentPage > 1) {
+    //   console.log(`Navigating to previous page: ${currentPage - 1}`);
       setCurrentPage(currentPage - 1);
     }
   };
+  
 
   return (
-    <div>
-        <h1>Employee Data Table</h1>
+    <div className="employee-table-container">
+      <h1>Employee Data Table</h1>
+      {error && <p className="error">{error}</p>}
       <table>
         <thead>
           <tr>
@@ -66,9 +67,9 @@ const EmployeeTable = () => {
           ))}
         </tbody>
       </table>
-      <div className='footer'>
+      <div className="footer">
         <button onClick={handlePrevious} disabled={currentPage === 1}>Previous</button>
-        <button >{` ${currentPage} `}</button >
+        <button className="page-number" disabled>{currentPage}</button>
         <button onClick={handleNext} disabled={currentPage === Math.ceil(employees.length / rowsPerPage)}>Next</button>
       </div>
     </div>
@@ -76,3 +77,4 @@ const EmployeeTable = () => {
 };
 
 export default EmployeeTable;
+
